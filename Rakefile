@@ -50,7 +50,7 @@ task :upload_slug => :new_slug do
       -H "Content-Type:"
       --data-binary @target/slug.tgz
       "#{slug_url}")
-  puts %x(#{cmd.join ' '})
+  %x(#{cmd.join ' '})
 end
 
 task :release_slug do
