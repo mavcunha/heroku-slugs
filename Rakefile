@@ -18,13 +18,13 @@ end
 task :get_buildpack => :cache_buildpack do
   Dir.chdir('app') do
     ensure_dir RUBY_BUILD_PACK_VERSION
-    sh "tar xzvf #{File.join(CACHE_DIR, RUBY_BUILD_PACK_FILE)} -C #{RUBY_BUILD_PACK_VERSION}"
+    sh "tar xzf #{File.join(CACHE_DIR, RUBY_BUILD_PACK_FILE)} -C #{RUBY_BUILD_PACK_VERSION}"
   end
 end
 
 task :build => [:clean, :get_buildpack] do
   ensure_dir 'target'
-  sh "tar czfv target/slug.tgz ./app"
+  sh "tar czf target/slug.tgz ./app"
 end
 
 task :new_slug do
