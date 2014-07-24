@@ -1,3 +1,4 @@
 app/ruby-2.0.0/
+app/server.rb.bak
 target/
 push_slug.sh

@@ -7,7 +7,14 @@ RUBY_BUILD_PACK_FILE =  "#{RUBY_BUILD_PACK_VERSION}.tgz"
 
 APP_NAME = ENV['HEROKU_APP_NAME'] || 'mavcunha-slug'
 
+PIPELINE_COUNTER = ENV['SNAP_PIPELINE_COUNTER'] || rand(10)
+
 task :default => [:build]
+
+task :patch_app do
+  sh "sed -i.bak \"s/XXSNAPPIPELINEXX/#{PIPELINE_COUNTER}/\" app/server.rb "
+  FileUtils.rm "app/server.rb.bak"
+end
 
 task :cache_buildpack do
   Dir.chdir(CACHE_DIR) do
